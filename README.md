@@ -51,4 +51,4 @@ Pip3
 - 3.严禁抄袭！发现后所有雷同均0分。
 
 ### 五、运行注意事项
-- 先运行get_cookie.py获取cookie，再运行main.py运行爬虫。:cat:
+- 先运行get_cookie.py获取cookie，再运行main.py运行爬虫。:adult:

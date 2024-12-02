@@ -6,9 +6,10 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from save_data import SQL_save
 
 def now_time():
-    return time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime())
+    return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 
 def load_cookies(driver, cookie_file):
     """加载Cookies到浏览器"""
@@ -133,9 +134,11 @@ if __name__ == '__main__':
 
     content = scrape_data(driver, 3)
 
-    # 写入字典
     data = pd.DataFrame(content)
-    data.to_csv("ngaData_" + str(now_time()) + ".csv", index=False, sep=',')
+    path=f"ngaData{time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime())}.csv"
+    data.to_csv(path, index=False, sep=',')
+    print(f"数据采集完成")
 
-    time.sleep(5)
+    time.sleep(3)
     driver.quit()
+    SQL_save(path)
